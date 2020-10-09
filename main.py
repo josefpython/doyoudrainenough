@@ -28,6 +28,12 @@ def main():
     else:
         return render_template("index.html")
 
+@app.route("/errorcatch/", methods=["GET"])
+def error():
+    #TODO Error catch and log
+    return redirect(url_for("main"))
+
+
 @app.route('/login/', methods=['GET'])
 def login():
     auth_url = cred.user_authorisation_url(scope=tk.scope.every)
@@ -85,13 +91,8 @@ def results():
                     break
                 else:
                     offsetcounter += 50
-            
-            for n in range(1):
-                try:
-                    score_saved = draincounter/totalcounter*100
-                except ZeroDivisionError:
-                    score_saved = 0
 
+            score_saved = draincounter/totalcounter*100
             if score_saved > 10:
                 score_saved = 10
 
@@ -117,7 +118,7 @@ def results():
             for item in favartists_mid.items:
              
                 if item.id in draingang:
-                    score_fav_mid = (score_fav_mid + (100 - fvmid)) / 15
+                    score_fav_mid = (score_fav_mid + (100 - fvmid)) / 15 #CHANGE
 
 
                 fvmid += 2
@@ -137,6 +138,19 @@ def results():
 
                 fvlong += 2
 
+            #fav GTB track long term
+        
+            fav_tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
+            for item in fav_tracks.items:              
+                if item.artists[0].id in draingang:
+                    ft_name = item.name
+                    ft_art = item.album.images[0].url
+                    break
+
+            if not ft_name:
+                ft_name = 'None <p style="font-size: 15px; margin-top: 5px;"> You lackin bruh </p>'
+                ft_art = "https://emojigraph.org/media/apple/pleading-face_1f97a.png"
+
             if score_fav_short > 10:
                 score_fav_short = 10
 
@@ -148,30 +162,32 @@ def results():
 
             score = round( ((score_saved + score_fav_short + score_fav_mid + score_fav_long) / 4)*100 ) / 100
 
+            if score < 2.5:
+                bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 100%); color: white;"
+            else:
+                if score >= 5:
+                    bgc = "background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(8,88,0,1) 100%);"
+                else:
+                    bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,179,0,1) 100%); color: black;"
+           
+
             try:
                 fv_artist = spotify.artist(dg_fav[0])
                 fav_a_img = literal_eval(str(fv_artist.images[2])).get("url")
                 fav_a_name = str(fv_artist.name)
             except Exception:
-                fav_a_img = "n"
-                fav_a_name = "Null"
+                fav_a_img = "https://emojigraph.org/media/apple/pleading-face_1f97a.png"
+                fav_a_name = 'Noone <p style="font-size: 15px; margin-top: 5px;"> Better go and listen to some drain! </p>'
+                bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,179,0,1) 100%); color: black;"
             
 
-            if score < 2.5:
-                bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 100%); color: white;"
-            else:
-                if score >= 5:
-                    bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,255,0,1) 100%); color: black;"
-                else:
-                    bgc = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,179,0,1) 100%); color: black;"
-
-            return render_template("results.html", score=score, bgc=bgc, fav_a_img=fav_a_img, fav_a_name=fav_a_name)
+            return render_template("results.html", score=score, bgc=bgc, fav_a_img=fav_a_img, fav_a_name=fav_a_name, ft_img=ft_art, ft_name=ft_name)
 
     except KeyError:
         uid = session.pop('user', None)
         if uid is not None:
             users.pop(uid, None)
-        return redirect(url_for('main'))
+        return redirect(url_for('error'))
 
 #if __name__ == "__main__":
 #    app.run()
