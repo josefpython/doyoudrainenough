@@ -1,0 +1,68 @@
+#bgvideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  /* Add some content at the bottom of the video/page */
+div.content {
+    height: 10em;
+    position: relative }
+div.content {
+    font-family: sans-serif;
+    font-size: large;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+
+div.artist {
+    height: 10em;
+    position: relative }
+div.artist {
+    width: 400px;
+    height: 60px;
+    font-family: sans-serif;
+    background-color: white;
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+
+div.artist img {
+    margin-right: 50px;
+    margin-top: 0px;
+}
+
+p.artist_content {
+    font-size: 50px;
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+p.artist_top {
+    margin-bottom: 10px;
+    color: black;
+    margin-left: 10px;
+}
+
+h1 {
+    margin-bottom: 0px;
+}
+
+p.sub {
+    background-color: white;
+    color: black;
+}
+
+p.score {
+    font-size: 70px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
