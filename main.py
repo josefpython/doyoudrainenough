@@ -139,7 +139,8 @@ def results():
                 fvlong += 2
 
             #fav GTB track long term
-        
+            ft_name = ""
+            ft_art = ""
             fav_tracks = spotify.current_user_top_tracks(time_range="long_term", limit=50)
             for item in fav_tracks.items:              
                 if item.artists[0].id in draingang:
@@ -147,7 +148,7 @@ def results():
                     ft_art = item.album.images[0].url
                     break
 
-            if not ft_name:
+            if ft_name == "":
                 ft_name = 'None <p style="font-size: 15px; margin-top: 5px;"> You lackin bruh </p>'
                 ft_art = "https://emojigraph.org/media/apple/pleading-face_1f97a.png"
 
