@@ -35,13 +35,30 @@
 }
 
 #text3 {
-    position: relative;
-    margin-left: 60%;
-    top: 0px;
+    position: fixed;
+    top: 60px;
+    right: 200px;
+    border-style: dashed;
+    border-color: red;
+    border-width: 10px;
+}
+
+#text3 img {
+    float: left;
+}
+
+#text3subtext1 {
+    float: right;
 }
 
 #pornad {
     margin-left: 150px;
     border-style: dotted;
     border-color: red;
+    border-width: 5px;
+}
+
+#text4 {
+    position: fixed;
+    bottom: 2px;
 }
