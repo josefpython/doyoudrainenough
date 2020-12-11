@@ -1,0 +1,66 @@
+#text1 {
+    color: red;
+    font-size: 90px;
+    background-color: yellow;
+    height: 650px;
+    padding-left: 50px;
+    padding-top: 20px;
+    max-width: 100%;
+    text-shadow: 2px 2px black;
+    border-style: solid;
+}
+#text1subtext1 {
+    font-size: 60px;
+    text-shadow: none;
+}
+
+#text1 img {
+    margin-left: 50px;
+}
+
+#text2 {
+    margin-left: 150px;
+    margin-top: 40px;
+    background-color:burlywood;
+    height: 350px;
+    width: 70%;
+    position: relative;
+    border-style: dotted;
+    padding: 5px;
+    font-size: 50px;
+}
+#text2 a {
+    color: orangered;
+    font-size: 50px;
+    text-shadow: orchid;
+}
+
+#text3 {
+    position: fixed;
+    top: 60px;
+    right: 200px;
+    border-style: dashed;
+    border-color: red;
+    border-width: 10px;
+}
+
+#text3 img {
+    float: left;
+}
+
+#text3subtext1 {
+    float: right;
+}
+
+#pornad {
+    margin-left: 150px;
+    border-style: dotted;
+    border-color: red;
+    border-width: 5px;
+}
+
+#text4 {
+    position: fixed;
+    bottom: 2px;
+    font-size: 40px;
+}
